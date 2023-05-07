@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="default" extends="json-default">
+		<interceptors>
+			<interceptor name="json"
+				class="org.apache.struts2.json.JSONInterceptor" />
+		</interceptors>
+
+		<action name="GetAllRegisteredUser"
+			class='struts2package.action.GetAllRegisteredUserAction'
+			method="execute">
+			<result name="success" type='json'>
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">response</param>
+			</result>
+		</action>
+		<action name="RegisterNewUser"
+			class='struts2package.action.RegisterNewUserAction' method="execute">
+			<interceptor-ref name="json" />
+			<interceptor-ref name="defaultStack" />
+			<result name="success" type='json'>
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">response</param>
+			</result>
+		</action>
+	</package>
+</struts>
